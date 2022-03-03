@@ -21,10 +21,6 @@ class ColumnsTest {
     @Test
     void testIt1() throws IOException {
 
-//        ByteArrayInputStream simInput1 =
-//                new ByteArrayInputStream("D:\\GenSpark\\Columns\\src\\main\\resources\\Input2.txt"
-//                        .getBytes(StandardCharsets.UTF_8));
-
         InputStream backup1 = System.in;
 
         System.setIn(new ByteArrayInputStream("D:\\GenSpark\\Columns\\src\\main\\resources\\Input2.txt"
@@ -43,11 +39,6 @@ class ColumnsTest {
     @Test
     void testIt2() throws IOException {
 
-//        ByteArrayInputStream simInput2 =
-//                new ByteArrayInputStream("D:\\GenSpark\\Columns\\src\\main\\resources\\Input"
-//                        .getBytes(StandardCharsets.UTF_8));
-
-
         InputStream backup2 = System.in;
 
         System.setIn(new ByteArrayInputStream("D:\\GenSpark\\Columns\\src\\main\\resources\\Input"
@@ -60,7 +51,6 @@ class ColumnsTest {
 
         assertEquals("File not found. Please enter a valid file path.",
                 Columns.errorMessage, "Incorrect Input is not being handled correctly.");
-
 
     }
 

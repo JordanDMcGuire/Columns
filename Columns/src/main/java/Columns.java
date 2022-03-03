@@ -8,7 +8,7 @@ import java.util.InputMismatchException;
 
 public class Columns {
 
-    static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    static BufferedReader input;
     static String filePath;
     static boolean fileExists = false;
     static ArrayList<String> inputFile;
@@ -34,7 +34,7 @@ public class Columns {
             try {
                 filePath = input.readLine();
 
-                if (!Files.exists(Path.of(filePath))) {
+                if (!Files.exists(Path.of(filePath)) || filePath.equals("")) {
                     throw new InputMismatchException();
                 }
                 else {
