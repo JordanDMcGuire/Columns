@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 
 public class Columns {
 
@@ -13,15 +14,59 @@ public class Columns {
     static boolean fileExists = false;
     static ArrayList<String> inputFile;
     static String errorMessage;
+    static int counter = 0;
 
     public static void main(String[] args) throws IOException {
 
         getFile();
+        int emptyStringCount;
 
-        inputFile = (ArrayList<String>) Files
-                .readAllLines(Path.of(filePath));
+        inputFile = (ArrayList<String>) Files.readAllLines(Path.of(filePath));
 
-        System.out.println(inputFile);
+        int row;
+        if(inputFile.size()< 6){
+            row = 3;
+        }
+        else if( inputFile.size() < 11){
+            row = 4;
+        }
+        else{
+            row = 9;
+        }
+
+        ArrayList<List<String>> transformedList = new ArrayList<>();
+
+        for (int j = 0; j < inputFile.size(); j += row) {
+            if (j + row <= inputFile.size() - 1) {
+                transformedList.add(inputFile.subList(j, j + row));
+            } else if (j + row > inputFile.size() - 1) {
+                transformedList.add(inputFile.subList(j, inputFile.size()));
+            }
+        }
+
+        int x = transformedList.get(0).size();
+        int y = transformedList.get(transformedList.size()-1).size();
+        emptyStringCount = x - y;
+
+        ArrayList<String> lastColumn = new ArrayList<>(transformedList.get(transformedList.size() - 1));
+
+        for (int i = 0; i < emptyStringCount; i++) {
+            lastColumn.add("");
+        }
+
+        transformedList.remove(transformedList.size() - 1);
+        transformedList.add(lastColumn.stream().toList());
+
+        do {
+            transformedList.stream()
+                    .forEach(l -> {
+                                if (l.size() >= counter) {
+                                    System.out.printf("%-30.30s",l.get(counter));
+                                }
+                            });
+            System.out.println();
+            counter++;
+        } while(counter < transformedList.get(0).size());
 
     }
 
