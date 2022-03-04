@@ -23,7 +23,7 @@ class ColumnsTest {
 
         InputStream backup1 = System.in;
 
-        System.setIn(new ByteArrayInputStream("D:\\GenSpark\\Columns\\src\\main\\resources\\Input2.txt"
+        System.setIn(new ByteArrayInputStream("src/main/resources/Input2.txt"
                         .getBytes(StandardCharsets.UTF_8)));
         Columns.main(new String[] {"arg1", "arg2", "arg3"});
         System.setIn(backup1);
@@ -41,7 +41,7 @@ class ColumnsTest {
 
         InputStream backup2 = System.in;
 
-        System.setIn(new ByteArrayInputStream("D:\\GenSpark\\Columns\\src\\main\\resources\\Input"
+        System.setIn(new ByteArrayInputStream("src/main/resources/Inpu.txt"
                 .getBytes(StandardCharsets.UTF_8)));
 
         Columns.fileExists = true;
@@ -51,6 +51,37 @@ class ColumnsTest {
 
         assertEquals("File not found. Please enter a valid file path.",
                 Columns.errorMessage, "Incorrect Input is not being handled correctly.");
+
+    }
+
+    @Test
+    void testIt3() throws IOException {
+
+        InputStream backup1 = System.in;
+
+        System.setIn(new ByteArrayInputStream("src/main/resources/Input3.txt"
+                .getBytes(StandardCharsets.UTF_8)));
+        Columns.main(new String[] {"arg1", "arg2", "arg3"});
+        System.setIn(backup1);
+
+        assertEquals("[One, Two, Three, Four, Five]",
+                Columns.inputFile.toString(), "The program failed to load the file.");
+
+    }
+
+    @Test
+    void testIt4() throws IOException {
+
+        InputStream backup1 = System.in;
+
+        System.setIn(new ByteArrayInputStream("src/main/resources/Input4.txt"
+                .getBytes(StandardCharsets.UTF_8)));
+        Columns.main(new String[] {"arg1", "arg2", "arg3"});
+        System.setIn(backup1);
+
+        assertEquals("[One, Two, Three, Four, Five, Six, " +
+                        "Seven, Eight, Nine, Ten]",
+                Columns.inputFile.toString(), "The program failed to load the file.");
 
     }
 

@@ -24,13 +24,13 @@ public class Columns {
         inputFile = (ArrayList<String>) Files.readAllLines(Path.of(filePath));
 
         int row;
-        if(inputFile.size()< 6){
+        if(inputFile.size() < 6) {
             row = 3;
         }
-        else if( inputFile.size() < 11){
+        else if(inputFile.size() < 11) {
             row = 4;
         }
-        else{
+        else {
             row = 9;
         }
 
